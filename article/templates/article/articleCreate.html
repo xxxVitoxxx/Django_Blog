@@ -1,0 +1,15 @@
+{% extends 'blog_app/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
+{% block title %}新增文章{% endblock %}
+{% block content %}
+<form method="post" action="{% url 'article:articleCreate' %}">
+  {% csrf_token %} <!--跨網站偽造請求-->
+  {{ articleForm.as_p }} <!--自動產出表單，欄位以段落方式呈現，欄位會以p包住-->
+  <input class="btn btn-sm btn-dark" type="submit" value="送出">
+  <a class="btn btn-sm btn-dark" href="{% url 'article:article' %}">放棄</a>
+</form>
+
+{% endblock %}

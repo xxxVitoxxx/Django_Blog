@@ -1,0 +1,21 @@
+{% extends 'blog_app/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
+
+{% block title %}閱讀文章{% endblock %}
+
+{% block content %}
+<h3>{{ article.title }}</h3>
+<p>發表時間: {{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
+<div class="articleContent">{{ article.content|linebreaks }}</div>
+{% for comment in comments %}
+<div class="mt-1">
+  <span class="h6">{{ comment.content }}</span>
+  <br>
+  <span class="text-secondary"><small>{{ comment.pubDateTime|date:'Y-m-d H:i' }}</small></span>
+</div>
+{% endfor %}
+{% endblock %}
