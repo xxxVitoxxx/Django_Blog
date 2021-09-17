@@ -9,6 +9,7 @@
 
 {% block content %}
 <h3>{{ article.title }}</h3>
+<a class="btn btn-sm btn-dark" href="{% url 'article:articleUpdate' article.id %}">修改內容</a>
 <p>發表時間: {{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
 <div class="articleContent">{{ article.content|linebreaks }}</div>
 {% for comment in comments %}

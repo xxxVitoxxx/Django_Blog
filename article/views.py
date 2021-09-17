@@ -51,3 +51,15 @@ def articleRead(request, articleId):
         'comments' : Comment.objects.filter(article=article)
     }
     return render(request, 'article/articleRead.html', context)
+
+def articleUpdate(request, articleId):
+    '''
+    Update the article instance:
+      1. Get the article to update; redirect to 404 if not found
+      2. If method is GET, render a bound form
+      3. If method is POST,
+        *  validate the form and render a bound form if the form is invalid
+        *  else, save it to the model and redirect to the articleRead page
+    '''
+    # TODO: finish the code
+    return render(request, 'article/article.html')
