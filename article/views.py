@@ -22,7 +22,7 @@ def articleCreate(request):
         * validate the form and display error message if the form is invalid
         * else, save it to the model and redirect to the article page
     '''
-    template = 'article/articleCreate.html'
+    template = 'article/articleCreateUpdate.html'
     if request.method == 'GET':
         return render(request, template, {'articleForm':ArticleForm()})
     
@@ -61,5 +61,17 @@ def articleUpdate(request, articleId):
         *  validate the form and render a bound form if the form is invalid
         *  else, save it to the model and redirect to the articleRead page
     '''
-    # TODO: finish the code
-    return render(request, 'article/article.html')
+    article = get_object_or_404(Article, id=articleId)
+    template = 'article/articleCreateUpdate.html'
+    if request.method == 'GET':
+        articleForm = ArticleForm(instance=article)
+        return render(request, template, {'articleForm':articleForm})
+    
+    #POST
+    articleForm = ArticleForm(request.POST, instance=article)
+    if not articleForm.is_valid():
+        return render(request, template, {'articleForm':articleForm})
+
+    articleForm.save()
+    messages.success(request, '文章已修改')
+    return redirect('article:articleRead', articleId=articleId)

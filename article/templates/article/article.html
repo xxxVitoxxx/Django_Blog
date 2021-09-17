@@ -15,7 +15,7 @@
     <p class="col-10 text-truncate">{{ article.content }}</p> <!--|linebreaks|truncatechars_html-->
     <footer>
     <div>
-      <a href="https://www.google.com">閱讀更多</a>
+      <a href="{% url 'article:articleRead' article.id %}">閱讀更多</a>
     </div>
     </footer>
   </div>
