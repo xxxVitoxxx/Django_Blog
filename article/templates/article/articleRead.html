@@ -8,8 +8,17 @@
 {% block title %}閱讀文章{% endblock %}
 
 {% block content %}
-<h3>{{ article.title }}</h3>
-<a class="btn btn-sm btn-dark" href="{% url 'article:articleUpdate' article.id %}">修改內容</a>
+<div class="container">
+<div class="row">
+  <div class="col1">
+    <h3>{{ article.title }}</h3>
+  </div>
+  <div class="col-8"></div>
+  <div class="col">
+    <a class="btn btn-sm btn-dark" href="{% url 'article:articleUpdate' article.id %}">修改內容</a>
+  </div>
+</div>
+</div>
 <p>發表時間: {{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
 <div class="articleContent">{{ article.content|linebreaks }}</div>
 {% for comment in comments %}
