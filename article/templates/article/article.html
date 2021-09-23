@@ -9,7 +9,20 @@
 {% block content %}
   <p><a class="btn btn-sm btn-dark" href="{% url 'article:articleCreate' %}">新增文章</a></p>
 {% for article, comments in articles.items %}
-  <h3><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+      <h3><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></h3>
+      </div>
+      <div class="col">
+      <form method="post" action="{% url 'article:articleDelete' article.id %}">
+        {% csrf_token %}
+        <input class="btn btn-sm btn-dark deleteConfirm" type="submit" value="刪除">
+      </form>
+      </div>
+    </div>
+  </div>
+
   <p>發表時間{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
   <div class="articleContent">
     <p class="col-10 text-truncate">{{ article.content }}</p> <!--|linebreaks|truncatechars_html-->
@@ -29,4 +42,8 @@
   <hr>
 {% endfor %}
 
+{% endblock %}
+
+{% block script %}
+<script src="{% static '/blog_app/js/deleteConfirm.js' %}"></script>
 {% endblock %}

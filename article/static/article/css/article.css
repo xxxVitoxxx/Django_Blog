@@ -4,3 +4,6 @@
     border: thin solid gray;
     border-radius: 10px;
 }
+.nobr {
+    display: inline-block;
+}
