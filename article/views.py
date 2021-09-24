@@ -3,6 +3,7 @@ from .models import Article, Comment
 from .forms import ArticleForm
 from django.contrib import messages
 from django.http import Http404
+from django.db.models.query_utils import Q
 
 # Create your views here.
 def article(request):
@@ -91,3 +92,16 @@ def articleDelete(request, articleId):
     article.delete()
     messages.success(request, '文章已成功刪除')
     return redirect('article:article')
+
+def articleSearch(request):
+    '''
+    Search for articles:
+      1. Get the "searchTerm" from the HTML form
+      2. Use "searchTerm" for filtering
+    '''
+    searchTerm = request.GET.get('searchTerm') # 利用request.GET.get()取的name為searchTerm的輸入欄位值
+    # 因request.GET的資料是字典結構，所以用get取出資料，若HTML表單找不到此serchTerm變數則回傳None
+    articles = Article.objects.filter(Q(title__icontains=searchTerm) | Q(content__icontains=searchTerm))
+    # 查詢標題是否包含serchTerm的輸入值 或 內容是否包含searchTerm的輸入值
+    context = {'articles': articles, 'searchTerm': searchTerm}
+    return render(request, 'article/articleSearch.html', context)

@@ -21,6 +21,6 @@
     {% csrf_token %}
     {{ articleForm.as_p }}
     <input class="btn btn-sm btn-dark" type="submit" value="送出">
-    <a class="btn btn-sm btn-dark" href="{% url 'article:articleRead' articleForm.instance.id %}">放棄</a>
+    <a class="btn btn-sm btn-dark" href="{% url 'article:article' %}">放棄</a>
   </form>
 {% endblock %}
