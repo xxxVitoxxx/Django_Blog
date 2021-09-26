@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 
 from .forms import UserForm
 # Create your views here.
@@ -46,4 +47,12 @@ def login(request):
     # login succcess
     auth_login(request, user)
     messages.success(request, '登入成功')
+    return redirect('blog_app:main')
+
+def logout(request):
+    '''
+    logout the user
+    '''
+    auth_logout(request)
+    messages.success(request, '成功登出')
     return redirect('blog_app:main')
