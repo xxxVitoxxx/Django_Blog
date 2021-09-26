@@ -18,4 +18,4 @@ def register(request):
     
     userForm.save()
     messages.success(request, '歡迎註冊')
-    return redirect('blog_app:blog_app')
+    return redirect('blog_app:main')
