@@ -4,6 +4,7 @@ from .forms import ArticleForm
 from django.contrib import messages
 from django.http import Http404
 from django.db.models.query_utils import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def article(request):
@@ -15,6 +16,7 @@ def article(request):
     
     return render(request, 'article/article.html', context)
 
+@login_required(login_url='Login')
 def articleCreate(request):
     '''
     Create a new article instance
@@ -103,5 +105,5 @@ def articleSearch(request):
     # 因request.GET的資料是字典結構，所以用get取出資料，若HTML表單找不到此serchTerm變數則回傳None
     articles = Article.objects.filter(Q(title__icontains=searchTerm) | Q(content__icontains=searchTerm))
     # 查詢標題是否包含serchTerm的輸入值 或 內容是否包含searchTerm的輸入值
-    context = {'articles': articles, 'searchTerm': searchTerm}
+    context = {'articles': articles, 'searchTerm': searchTerm} # 'searchTerm': searchTerm 為了讓使用者在查詢關鍵字後關鍵字仍顯示在input上
     return render(request, 'article/articleSearch.html', context)

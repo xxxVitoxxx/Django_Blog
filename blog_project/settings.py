@@ -128,6 +128,8 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'account.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
 
+LOGIN_URL = 'blog_app/main.html'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
