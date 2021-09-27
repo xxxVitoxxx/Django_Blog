@@ -7,19 +7,23 @@
 {% block title%}文章列表{% endblock %}
 
 {% block content %}
+  {% if user.is_authenticated %}
   <p><a class="btn btn-sm btn-dark" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+  {% endif %}
 {% for article, comments in articles.items %}
   <div class="container">
     <div class="row">
       <div class="col-3">
       <h3><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></h3>
       </div>
+      {% if user.is_authenticated %}
       <div class="col">
       <form method="post" action="{% url 'article:articleDelete' article.id %}">
         {% csrf_token %}
         <input class="btn btn-sm btn-dark deleteConfirm" type="submit" value="刪除">
       </form>
       </div>
+      {% endif %}
     </div>
   </div>
 

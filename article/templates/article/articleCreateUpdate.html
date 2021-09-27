@@ -12,6 +12,7 @@
   {% endif %}
 {% endblock %}
 
+{% if user.is_authenticated %}
 {% block content %}
   {% if articleForm.instance.id %}
     <form method="post" action="{% url 'article:articleUpdate' articleForm.instance.id %}">
@@ -24,3 +25,4 @@
     <a class="btn btn-sm btn-dark" href="{% url 'article:article' %}">放棄</a>
   </form>
 {% endblock %}
+{% endif %}

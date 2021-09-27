@@ -16,7 +16,7 @@ def article(request):
     
     return render(request, 'article/article.html', context)
 
-@login_required(login_url='Login')
+@login_required
 def articleCreate(request):
     '''
     Create a new article instance
