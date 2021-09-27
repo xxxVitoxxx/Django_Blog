@@ -40,7 +40,8 @@ def articleCreate(request):
     #return article(request) # 跳到article.html頁面重新整理會重複執行上次動作(POST)，會再次送出資料，造成相同資料再次儲存
     # django Post/Redirect/Get設計模式 POST處理結束，呼叫redirect()轉址即可
     return redirect('article:article') #article網頁
-    
+
+@login_required
 def articleRead(request, articleId):
     '''
     Read an article
@@ -55,6 +56,7 @@ def articleRead(request, articleId):
     }
     return render(request, 'article/articleRead.html', context)
 
+@login_required
 def articleUpdate(request, articleId):
     '''
     Update the article instance:
@@ -79,6 +81,7 @@ def articleUpdate(request, articleId):
     messages.success(request, '文章已修改')
     return redirect('article:articleRead', articleId=articleId)
 
+@login_required
 def articleDelete(request, articleId):
     '''
     Delete the article instance:
