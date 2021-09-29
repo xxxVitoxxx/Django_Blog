@@ -37,14 +37,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # app
     'blog_app',
     'article',
     'acc',
-    
+
+    # django allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # google provider
+    'allauth.socialaccount.providers.google',
 ]
 
+SITE_ID = 1
 
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 
 MIDDLEWARE = [
@@ -134,6 +152,8 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
 
 LOGIN_URL = 'acc:login' # 預設成功登入顯示的網址
+
+LOGIN_REDIRECT_URL = 'article:article'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

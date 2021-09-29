@@ -1,5 +1,6 @@
 {% extends 'blog_app/base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}登入{% endblock %}
 
@@ -12,6 +13,7 @@
   <p>密碼：<input type="password" name="password"></p>
   <br>
   <a><input class="btn btn-sm btn-dark" type="submit" value="送出"></a>
+  <a class="btn btn-sm btn-dark" href="{% provider_login_url 'google' %}">Google登入</a>
   <a class="btn btn-sm btn-dark" href="{% url 'acc:register' %}">註冊</a>
 </form>
 </div>
