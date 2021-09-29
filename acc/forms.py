@@ -6,7 +6,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(label='密碼', widget=forms.PasswordInput)
     password2 = forms.CharField(label='確認密碼', widget=forms.PasswordInput)
     fullName = forms.CharField(label='姓名', max_length=128)
-    website = forms.URLField(label='個人網址', max_length=128)
+    email = forms.EmailField(label='信箱', max_length=200)
     address = forms.CharField(label='住址', max_length=128)
 
     class Meta:
@@ -16,7 +16,7 @@ class UserForm(forms.ModelForm):
             'password',
             'password2',
             'fullName',
-            'website',
+            'email',
             'address',
         ]
     
