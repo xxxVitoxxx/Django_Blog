@@ -51,11 +51,13 @@ INSTALLED_APPS = [
 
     # google provider
     'allauth.socialaccount.providers.google',
+    # github provider
+    'allauth.socialaccount.providers.github',
 ]
 
 SITE_ID = 1
 
-
+# Supported Providers
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
