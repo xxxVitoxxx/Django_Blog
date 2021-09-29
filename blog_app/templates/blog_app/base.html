@@ -49,15 +49,13 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'article:article' %}">文章</a>
       </li>
-      {% if not user.is_authenticate %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'account:login' %}">登入</a>
-      </li>
+      <li class="nav-item"></li>
+      {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'acc:logout' %}">登出</a>
       {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'account:logout' %}">登出</a>
-      </li>
+        <a class="nav-link" href="{% url 'acc:login' %}">登入</a>
       {% endif %}
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown toggle" href="#" id="navbardrop" data-toggle="dropdown">Flask</a>
           <div class="dropdown-menu">

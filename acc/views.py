@@ -11,7 +11,7 @@ def register(request):
     '''
     Register a new user
     '''
-    template = 'account/register.html'
+    template = 'acc/register.html'
     if request.method == 'GET':
         return render(request, template, {'userForm':UserForm()})
 
@@ -28,7 +28,7 @@ def login(request):
     '''
     login as existing user
     '''
-    template = 'account/login.html'
+    template = 'acc/login.html'
     if request.method == 'GET':
         return render(request, template)
 

@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog_app',
     'article',
-    'account',
+    'acc',
+    
 ]
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,9 +131,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'account.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
+AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
 
-LOGIN_URL = 'account:login'
+LOGIN_URL = 'acc:login' # 預設成功登入顯示的網址
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
