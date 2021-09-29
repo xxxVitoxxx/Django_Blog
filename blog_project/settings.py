@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    # google provider
+    # provider
     'allauth.socialaccount.providers.google',
-    # github provider
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 SITE_ID = 1
@@ -65,6 +65,9 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '645789789726204'
+SOCIAL_AUTH_FACEBOOK_SECRET = '394145e8c8858b1673c518c3b2ab52b6'
 
 
 MIDDLEWARE = [
