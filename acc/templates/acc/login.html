@@ -4,6 +4,12 @@
 
 {% block title %}登入{% endblock %}
 
+{% block css %}
+<link href="{% static 'fontawesome_free/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesome_free/css/brands.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesome_free/css/solid.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
 <div class="container">
 <br>
@@ -13,10 +19,14 @@
   <p>密碼：<input type="password" name="password"></p>
   <br>
   <a><input class="btn btn-sm btn-dark" type="submit" value="送出"></a>
-  <a class="btn btn-sm btn-dark" href="{% provider_login_url "google" %}">Google 登入</a>
-  <a class="btn btn-sm btn-dark" href="{% provider_login_url "github" %}">Github 登入</a>
-  <a class="btn btn-sm btn-dark" href="{% provider_login_url "facebook" method="oauth2" %}">Facebook 登入</a>
+  <a class="btn btn-sm btn-dark" href="{% provider_login_url 'google' %}">Google 登入</a>
+  <a class="btn btn-sm btn-dark" href="{% provider_login_url 'github' %}">Github 登入</a>
+  <a class="btn btn-sm btn-dark" href="{% provider_login_url 'facebook' method='oauth2' %}">Facebook 登入</a>
   <a class="btn btn-sm btn-dark" href="{% url 'acc:register' %}">註冊</a>
 </form>
+<button type="button" class="btn btn-facebook btn-icon">
+  <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+  <span class="btn-inner--text">Facebook</span>
+</button>
 </div>
 {% endblock %}

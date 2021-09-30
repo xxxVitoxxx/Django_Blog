@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import sys, os
+
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +27,13 @@ SECRET_KEY = 'django-insecure-x-7a&0z&7yx7vgpb(z7x%_p%vk@3(4sv+hk(0#!*enw=_zme$1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if 'DYNO' in os.environ: # Running on Heroku
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # font awesome
+    'fontawesome_free',
 
     # app
     'blog_app',
@@ -104,17 +111,26 @@ WSGI_APPLICATION = 'blog_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogdb', #BASE_DIR / 
-        'USER': 'dbuser',
-        'PASSWORD': 'dbuser',
-        'HOST': 'localhost',
-        'PORT' : '',
+if DEBUG: # Running on the development environment
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'blogdb', #BASE_DIR / 
+            'USER': 'dbuser',
+            'PASSWORD': 'dbuser',
+            'HOST': 'localhost',
+            'PORT' : '',
+        }
     }
-}
+else: # Runnging on Heroku
+    # Parse database configuration from $DATABASE_URL
+    import dj_database_url
+    DATABASE = {'default':dj_database_url.config()}
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = {'HTTP_X_FORWARDED_PROTO', 'https'}
 
+# For Heroku develoyment
+STATIC_ROOT = 'staticfiles'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
