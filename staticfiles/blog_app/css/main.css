@@ -1,0 +1,24 @@
+.bg-bk {background-color:#B5B5B5;} /*#B5B5B5*/
+.btn {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+/* Messages */
+.success, .error {
+    padding: 1em 0 1em 3em;
+}
+
+.success {
+    background-color: #ddffdd;
+    border: thin solid green;
+}
+
+.error {
+    background-color: #fbd9d8;
+    border: thin solid red;
+}

@@ -32,6 +32,7 @@ if 'DYNO' in os.environ: # Running on Heroku
 
 ALLOWED_HOSTS = [
     'vitoblog.herokuapp.com/',
+    '*',
 ]
 
 
