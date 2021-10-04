@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
 ]
 
-SITE_ID = 2
+SITE_ID = 1
 
 # Supported Providers
 AUTHENTICATION_BACKENDS = [
@@ -179,6 +179,8 @@ AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，
 LOGIN_URL = 'acc:login' # 預設成功登入顯示的網址
 
 LOGIN_REDIRECT_URL = 'article:article'
+
+LOGOUT_URL = 'blog_app:main'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
