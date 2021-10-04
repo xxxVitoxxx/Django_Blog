@@ -1,4 +1,5 @@
 from django.db import models
+from acc.models import User
 
 # Create your models here.
 
@@ -7,6 +8,7 @@ class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
     content = models.TextField()
     pubDateTime = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User)
 
     def __str__(self):
         return self.title

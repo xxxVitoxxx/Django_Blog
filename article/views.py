@@ -110,3 +110,19 @@ def articleSearch(request):
     # 查詢標題是否包含serchTerm的輸入值 或 內容是否包含searchTerm的輸入值
     context = {'articles': articles, 'searchTerm': searchTerm} # 'searchTerm': searchTerm 為了讓使用者在查詢關鍵字後關鍵字仍顯示在input上
     return render(request, 'article/articleSearch.html', context)
+
+@login_required
+def articleLike(request, articleId):
+    '''
+    Add the user to the 'likes' field:
+      1. Get the article; redirect to 404 if not found
+      2. If the user does not exist in the 'likes' field, add him/her
+      3. Finally, call articleRead() function to render the article
+    '''
+    article = get_object_or_404(Article, id=articleId)
+    #print(f'username: {request.user.username}') #bird
+    #print(f'user: {request.user}') # bird(bird)
+    #print(f'article: {article}') # title
+    if request.user not in article.likes.all():
+        article.likes.add(request.user)
+    return articleRead(request, articleId)

@@ -22,7 +22,13 @@
 </div>
 </div>
 <p>發表時間: {{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
-<div class="articleContent">{{ article.content|linebreaks }}</div>
+<div class="articleContent">{{ article.content }}</div>
+<p>
+  <i class="fas fa-thumbs-up" style="width: 1.6em;">{{ article.likes.count }}</i>
+  {% if user.is_authenticated %}
+  <a href="{% url 'article:articleLike' article.id %}">讚</a>
+  {% endif %}
+</p>
 {% for comment in comments %}
 <div class="mt-1">
   <span class="h6">{{ comment.content }}</span>
