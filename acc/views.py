@@ -17,11 +17,17 @@ def register(request):
 
     # POST
     userForm = UserForm(request.POST)
+    print(f'userForm: {userForm}')
     if not userForm.is_valid():
         return render(request, template, {'userForm':userForm})
     
     userForm.save()
     messages.success(request, '歡迎註冊')
+
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(username=username, password=password)
+    auth_login(request, user)
     return redirect('blog_app:main')
 
 def login(request):
