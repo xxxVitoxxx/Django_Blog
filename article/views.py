@@ -172,4 +172,4 @@ def commentUpdate(request, commentId):
         commentToUpdate.content = comment
         commentToUpdate.save()
     
-    return redirect('aarticle:articleRead', articleId=article.id)
+    return redirect('article:articleRead', articleId=article.id)
