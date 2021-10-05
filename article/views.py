@@ -126,3 +126,50 @@ def articleLike(request, articleId):
     if request.user not in article.likes.all():
         article.likes.add(request.user)
     return articleRead(request, articleId)
+
+def commentCreate(request, articleId):
+    '''
+    Create a comment for an article:
+      1. Get the comment from the html form
+      2. Store it to database
+    '''
+    if request.method == 'GET':
+        return articleRead(request, articleId)
+    
+    # POST
+    comment = request.POST.get('comment')
+    if comment:
+        comment.strip()
+    if not comment:
+        return redirect('article:articleRead', articleId=articleId)
+    
+    article = get_object_or_404(Article, id=articleId)
+    Comment.objects.create(article=article, user=request.user, content=comment)
+    return redirect('article:articleRead', articleId=articleId)
+
+def commentUpdate(request, commentId):
+    '''
+    Update a comment:
+      1. Get the comment to Update and its article; redirect to 404 if not found
+      2. If it is a Get request, return
+      3. If the comment/'s author is not the user, return
+      4. If comment is empty, delete the comment, else update the comment
+    '''
+    commentToUpdate = get_object_or_404(Comment, id=commentId)
+    article = get_object_or_404(Article, id=commentToUpdate.article.id)
+    if request.method == 'GET':
+        return articleRead(request, article.id)
+    
+    # POST
+    if commentToUpdate.user != request.user:
+        messages.error(request, '無權限修改')
+        return redirect('article:articleRead', articleId=article.id)
+
+    comment = request.POST.get('comment', '').strip() # 找不到變數return ''在strip()
+    if not comment:
+        commentToUpdate.delete()
+    else:
+        commentToUpdate.content = comment
+        commentToUpdate.save()
+    
+    return redirect('aarticle:articleRead', articleId=article.id)
