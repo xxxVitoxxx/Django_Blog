@@ -42,6 +42,7 @@
   {% for comment in comments %}
     <div class="mt-1">
       <span class="commentAuthor">{{ comment.user.username }}</span>
+      <span>:</span>
       <span class="comment">{{ comment.content }}</span>
       <br>
       <span class="text-secondary"><small>{{ comment.pubDateTime|date:'Y-m-d H:i' }}</small></span>
