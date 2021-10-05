@@ -38,11 +38,12 @@
   </div>
   <p>
     <i class="fas fa-thumbs-up" style="width: 1.6em;">{{ article.likes.count }}</i>
+    <span>{{ comments|length }}則留言</span>
   </p>
+  
   {% for comment in comments %}
     <div class="mt-1">
-      <span class="commentAuthor">{{ comment.user.username }}</span>
-      <span>:</span>
+      <span class="commentAuthor">{{ comment.user.username }}:</span>
       <span class="comment">{{ comment.content }}</span>
       <br>
       <span class="text-secondary"><small>{{ comment.pubDateTime|date:'Y-m-d H:i' }}</small></span>
