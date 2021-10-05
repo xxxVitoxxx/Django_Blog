@@ -18,7 +18,8 @@ class Article(models.Model):
         ordering = ['-pubDateTime']
 
 class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE) # 當文章被刪除，該文章的留言也一並被刪除
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # 當使用者被刪除，該使用者的留言通通一並被刪除
     content = models.CharField(max_length=128)
     pubDateTime = models.DateTimeField(auto_now_add=True)
 

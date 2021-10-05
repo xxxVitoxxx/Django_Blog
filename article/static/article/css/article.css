@@ -4,3 +4,11 @@
   border: thin solid gray;
   border-radius: 10px;
 }
+.comment, .commentAuthor{
+    font-size: 0.8em;
+}
+
+.commentAuthor{
+    font-weight: bold;
+    color: #186caf;
+}
