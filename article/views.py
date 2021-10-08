@@ -173,3 +173,23 @@ def commentUpdate(request, commentId):
         commentToUpdate.save()
     
     return redirect('article:articleRead', articleId=article.id)
+
+def commentDelete(request, commentId):
+    '''
+    1. Get the comment to update and its article; article to 404 if not found
+    2. If it is a 'GET' request, return
+    3. if the comment's author is not the user, return
+    4. Delete tje comment
+    '''
+    comment = get_object_or_404(Comment, id=commentId)
+    article = get_object_or_404(Article, id=comment.article.id)
+    if request.method == 'GET':
+        return articleRead(request, article.id)
+    
+    # POST
+    if comment.user != request.user:
+        messages.error(request, '無刪除權限')
+        return redirect('article:articleRead', articleId=article.id)
+    
+    comment.delete()
+    return redirect('article:articleRead', articleId=article.id)

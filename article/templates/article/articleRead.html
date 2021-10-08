@@ -64,7 +64,7 @@
     <div class="mt-1 dropdown show">
       <span class="commentAuthor">{{ comment.user.username }}:</span>
 
-      <!--{% if comment.user != user %}
+      {% if comment.user != user %}
         <span class="h6">{{ comment.content }}</span>
       {% else %}
         <form method="post" action="{% url 'article:commentUpdate' comment.id %}">
@@ -72,11 +72,15 @@
           <input type="text" name="comment" value="{{ comment.content }}">
           <input class="btn" type="submit" value="修改">
         </form>
-      {% endif %}-->
+        <form method="post" action="{% url 'article:commentDelete' comment.id %}">
+          {% csrf_token %}
+          <input class="btn deleteConfirm" type="submit" value="刪除">
+        </form>
+      {% endif %}
 
-      <span class="h6">{{ comment.content }}</span>
+      <!--<span class="h6">{{ comment.content }}</span>-->
       {% if comment.user == user %}
-        <!--bootstrap dropdown-menu-->
+        <!--bootstrap dropdown-menu-
           <a class="btn-sm dropdown-toggle" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ...
         </a>
@@ -84,7 +88,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="#">編輯</a>
           <a class="dropdown-item" href="#">刪除</a>
-        </div>
+        </div>-->
 
         <!-- div div
         <div class="comment1">
@@ -172,4 +176,5 @@ function listBtn() {
     }
   }
 </script>
+<script src="{% static 'blog_app/js/deleteConfirm.js' %}"></script>
 {% endblock %}

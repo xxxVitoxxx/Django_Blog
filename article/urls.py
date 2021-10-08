@@ -9,6 +9,7 @@ from .views import (
     articleLike,
     commentCreate,
     commentUpdate,
+    commentDelete,
 )
 
 app_name = 'article'
@@ -22,4 +23,5 @@ urlpatterns = [
     path('articleLike/<int:articleId>', articleLike, name='articleLike'),
     path('commentCreate/<int:articleId>', commentCreate, name='commentCreate'),
     path('commentUpdate/<int:commentId>', commentUpdate, name='commentUpdate'),
+    path('commentDelete/<int:commentId>', commentDelete, name='commentDelete'),
 ]
