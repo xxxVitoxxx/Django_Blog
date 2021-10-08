@@ -3,6 +3,31 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+  <style>
+    .size {
+      width: 35px; 
+      height: 50px;
+      border-width: 1px;
+      border-style: solid;
+    }
+    /*edit_message*/
+    .editMessage {
+    width: 35px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:white;
+    }
+
+    .content {
+      width: 40px;
+      height: 40px;
+      background-color: whitesmoke;
+    }
+  </style>
+
 {% endblock %}
 
 {% block title %}閱讀文章{% endblock %}
@@ -36,9 +61,10 @@
     <span>共{{ comments|length }}則留言</span>
   </p>
   {% for comment in comments %}
-    <div class="mt-1">
+    <div class="mt-1 dropdown show">
       <span class="commentAuthor">{{ comment.user.username }}:</span>
-      {% if comment.user != user %}
+
+      <!--{% if comment.user != user %}
         <span class="h6">{{ comment.content }}</span>
       {% else %}
         <form method="post" action="{% url 'article:commentUpdate' comment.id %}">
@@ -46,6 +72,43 @@
           <input type="text" name="comment" value="{{ comment.content }}">
           <input class="btn" type="submit" value="修改">
         </form>
+      {% endif %}-->
+
+      <span class="h6">{{ comment.content }}</span>
+      {% if comment.user == user %}
+        <!--bootstrap dropdown-menu
+          <a class="btn-sm dropdown-toggle" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ...
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">編輯</a>
+          <a class="dropdown-item" href="#">刪除</a>
+        </div>-->
+
+        <!-- div div
+        <div class="comment1">
+          ...
+          <span class="comment2">
+            <a style="font-size: small;" href="#">編輯</a>
+            <a style="font-size: small;" href="#">刪除</a>
+          </span>
+
+        </div>-->
+        <!--
+        <div id="listBtn" onclick="listBtn()" style="display:inline-block">...</div>
+          <div id="textlistn" style="display:none;">
+            <a href="https://www.google.com">編輯</a>
+            <a href="https://www.yahoo.com.tw">編輯</a>
+          </div>-->
+        
+        <!--css+js-->
+        <a onclick="func()">...</a>
+        <div id="divBack" class="content" style="display: none;">
+          <a href="#">編輯</a>
+          <a href="#">刪除</a>
+        </div>
+
       {% endif %}
       <br>
       <span class="text-secondary"><small>{{ comment.pubDateTime|date:'Y-m-d H:i' }}</small></span>
@@ -61,5 +124,52 @@
     </form>
     <br><br>
   {% endif %}
+  <a id="aaa" name="aaa" onclick="$('#divShow').show();" href="#">...</a>
+    <div id="divShow" name="divShow" class="size editMessage">
+      <a href="#" style="font-size: small;">編輯</a>
+      <a href="#" style="font-size: small;">刪除</a>
+    </div>
 
+
+{% endblock %}
+
+{% block script %}
+<script>
+function listBtn() {
+  var listBtn = document.getElementById('listBtn');
+  var textlistn = document.getElementById('textlistn');
+  if (textlistn.style.display === 'none') {
+    textlistn.style.display = 'block';
+    listBtn.innerText = "...";
+  } else {
+    textlistn.style.display = 'none';
+    listBtn.innerText = "...";
+  }
+}
+</script>
+
+<script type="text/javascript">
+  $(function(){
+      $("#divShow").hide();
+      
+      $('body').click(function(evt) {
+          if($(evt.target).parents("#divShow").length==0 && 
+              evt.target.id != "aaa" && evt.target.id != "divShow") {
+              $('#divShow').hide();
+          }
+      });
+  });
+</script>
+
+<script>
+  function func(){
+    var divBack=document.getElementById("divBack");
+    console.log(divBack.style.display);
+    if(divBack.style.display=="none"){
+      divBack.style.display="inline-block"
+    }else{
+      divBack.style.display="none"
+    }
+  }
+</script>
 {% endblock %}
