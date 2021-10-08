@@ -74,7 +74,6 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
-    'social_core.backen.facebool.FacebookOAuth2',
 ]
 
 SOCIAL_AUTH_FACEBOOK_KEY = '645789789726204'
