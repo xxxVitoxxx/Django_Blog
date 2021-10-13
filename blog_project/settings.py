@@ -133,9 +133,6 @@ else: # Runnging on Heroku
     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
     SECURE_PROXY_SSL_HEADER = {'HTTP_X_FORWARDED_PROTO', 'https'}
 
-# For Heroku develoyment
-STATIC_ROOT = 'staticfiles'
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -173,6 +170,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For Heroku develoyment
+STATIC_ROOT = 'staticfiles'
 
 AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
 

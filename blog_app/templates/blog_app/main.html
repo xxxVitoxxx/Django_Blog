@@ -1,10 +1,70 @@
 {% extends 'blog_app/base.html' %}
+{% load static %}
 
 {% block title%}部落客{% endblock title %}
 
+{% block css %}
+<style type="text/css">
+#fiif {
+    width:600px;
+    margin:0 auto;
+    font-size:13px;
+}
+#content {
+    margin-left:120px;
+    margin-right:120px;
+    height:600px;
+    text-align:center;
+    line-height:600px;
+}
+#footer {
+    clear:both;
+    background-color:#FFD4D4;
+    height:80px;
+    text-align:center;
+    line-height:80px;
+}
+
+
+/*.titlebox {
+  text-align:center;
+  line-height:20px;
+  margin:0 auto;
+}
+.buttonbox{
+  display:inline-block;
+  width:30px;
+  height:30px;
+  background:#c00;
+}*/
+</style>
+<link rel="stylesheet" href="{% static 'acc/css/login.css' %}">
+{% endblock %}
 {% block content %}
-<h3><strong>Django</strong>跟你問聲好！！！</h3>
-{% for i in '0123456789' %}
-<p>{{ demo }}</p>
-{% endfor %}
+<div id="fiif">
+    <div id="content">
+        <h1>Django's Blog</h1>
+        <h6>record your note</h6>
+      <button class="btn btn-lg btn-secondary">
+        <a href="">Sing In</a>
+      </button>
+      <div class="titlebox"></div>
+      <div class="buttonbox"></div>
+    </div>
+    <!--<div id="footer">
+        <h6>IG:<a href="#">ihungyu94</a></h6>
+        <h6><a href="#">Gmail:chaovitoyu83@gmail.com</a></h6>
+    </div>-->
+    <div class="navbar-fixed-button">
+      <div class="container">
+        <a href="https://github.com/xxxVitoxxx"><img src="{% static 'blog_app/img/github.png' %}" alt="github.png">xxxVitoxxx</a>
+      </div>
+    </div>
+
+    <div class="container" style = "min-height:300px;">
+      <div class="row align-items-end" >
+         <div class="col-md-12">align-items-end</div>
+      </div>
+   </div>
+</div>
 {% endblock content %}

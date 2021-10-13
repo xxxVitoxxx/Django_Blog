@@ -12,16 +12,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 
-  <link rel="stylesheet" href="{% static 'blog_app/css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog_app/css/main.css' %}">
   {% block css %}{% endblock %}
 
     <!--引入google fonts-->
   <style>
   body {
-      font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
   }
   a {
-      color:#85929E
+    color:#85929E
   }
   </style>
 
@@ -72,7 +72,7 @@
     </form>
   </div>
   </nav>
-    
+  
   <div class="box mr-3 mb-5">
     <br>
     {% for message in messages %}
@@ -87,5 +87,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   {% block script %}{% endblock script %}
+  
 </body>
 </html>
