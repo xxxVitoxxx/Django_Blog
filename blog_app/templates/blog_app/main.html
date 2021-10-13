@@ -25,7 +25,14 @@
     line-height:80px;
 }
 
+.container img {
+  width: 18px;
+  height: 18px;
+}
 
+body {
+  background-image: url("{% static 'blog_app/img/view1.png' %}");
+}
 /*.titlebox {
   text-align:center;
   line-height:20px;
@@ -38,7 +45,6 @@
   background:#c00;
 }*/
 </style>
-<link rel="stylesheet" href="{% static 'acc/css/login.css' %}">
 {% endblock %}
 {% block content %}
 <div id="fiif">
@@ -57,14 +63,21 @@
     </div>-->
     <div class="navbar-fixed-button">
       <div class="container">
-        <a href="https://github.com/xxxVitoxxx"><img src="{% static 'blog_app/img/github.png' %}" alt="github.png">xxxVitoxxx</a>
+        <div class="row">
+          <div class="col-3">
+          <a href="https://github.com/xxxVitoxxx"><img src="{% static 'blog_app/img/github.png' %}" alt="github logo">  :xxxVitoxxx</a>
+          </div>
+          <div class="col-4">
+          <span><img src="{% static 'blog_app/img/gmail.png' %}" alt="gmail logo">  :chaovitoyu@gmail.com</span>
+        </div>
+        </div>
       </div>
     </div>
 
-    <div class="container" style = "min-height:300px;">
+    <!--<div class="container" style = "min-height:300px;">
       <div class="row align-items-end" >
          <div class="col-md-12">align-items-end</div>
       </div>
-   </div>
+   </div>-->
 </div>
 {% endblock content %}
