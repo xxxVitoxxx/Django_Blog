@@ -174,8 +174,6 @@ STATIC_URL = '/static/'
 # For Heroku develoyment
 STATIC_ROOT = 'staticfiles' 
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，讓Django知道User model已改為account.User
 
 LOGIN_URL = 'acc:login' # 預設成功登入顯示的網址
