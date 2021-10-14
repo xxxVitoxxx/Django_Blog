@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+#from django.core.mail import send_email
 
 from .forms import UserForm
 # Create your views here.
@@ -21,14 +22,20 @@ def register(request):
     if not userForm.is_valid():
         return render(request, template, {'userForm':userForm})
     
+    #pwd = request.POST.get('password')
+    #if len(pwd) < 5:
+    #    messages.error(request, 'pwd is too short')
+    #    return render(request, template, {'userForm':userForm})
     userForm.save()
     messages.success(request, '歡迎註冊')
 
     username = request.POST.get('username')
     password = request.POST.get('password')
+    mail = request.POST.get('email')
+    email = {'mail':mail}
     user = authenticate(username=username, password=password)
     auth_login(request, user)
-    return redirect('blog_app:main')
+    return redirect('blog_app:main', email)
 
 def login(request):
     '''

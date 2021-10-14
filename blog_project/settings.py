@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import sys, os
+from dotenv import load_dotenv
+load_dotenv()
 
 sys.modules['fontawesome_free'] = __import__('fontawesome-free')
 
@@ -63,6 +65,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.facebook',
+    'django.core.mail',
 ]
 
 SITE_ID = 1
@@ -76,8 +79,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '645789789726204'
-SOCIAL_AUTH_FACEBOOK_SECRET = '394145e8c8858b1673c518c3b2ab52b6'
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 
 MIDDLEWARE = [
@@ -186,3 +189,5 @@ LOGOUT_URL = 'blog_app:main'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
