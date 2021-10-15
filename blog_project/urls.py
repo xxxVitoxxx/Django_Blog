@@ -16,11 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from blog_app.views import main
+from rest_framework.routers import DefaultRouter
+from article.views import ArticleViewSet
+
+router = DefaultRouter()
+router.register(r'article', ArticleViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('article/', include('article.urls', namespace='article')),
     path('acc/', include('acc.urls')),
     path('blog_app/', include('blog_app.urls', namespace='blog_app')),
-    path('accounts/', include('allauth.urls')), # django-allauth 網址
+    path('accounts/', include('allauth.urls')), # django-allauth
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

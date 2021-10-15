@@ -6,6 +6,10 @@ from django.http import Http404
 from django.db.models.query_utils import Q
 from django.contrib.auth.decorators import login_required
 
+from .serializers import ArticleSerializer
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 def article(request):
     '''
@@ -193,3 +197,10 @@ def commentDelete(request, commentId):
     
     comment.delete()
     return redirect('article:articleRead', articleId=article.id)
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+    # only superuser can user api
+    permission_classes = (IsAuthenticated,)

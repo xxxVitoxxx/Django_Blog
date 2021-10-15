@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.facebook',
     'django.core.mail',
+    'rest_framework',
 ]
 
 SITE_ID = 1
