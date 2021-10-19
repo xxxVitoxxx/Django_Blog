@@ -47,11 +47,11 @@
       <span class="commentAuthor">
         
         {% if comment.user.fullName %}
-          {{ comment.user.fullName }}
+          {{ comment.user.fullName }}:
         {% elif comment.user.is_superuser %}
-          管理員
+          管理員:
         {% else %}
-          {{ comment.user.first_name }}{{ comment.user.last_name }}
+          {{ comment.user.first_name }}{{ comment.user.last_name }}:
         {% endif %}
       </span>
       <span class="comment">{{ comment.content }}</span>

@@ -62,7 +62,15 @@
   </p>
   {% for comment in comments %}
     <div class="mt-1 dropdown show">
-      <span class="commentAuthor">{{ comment.user.username }}:</span>
+      <span class="commentAuthor">
+        {% if comment.user.fullName %}
+          {{ comment.user.fullName }}:
+        {% elif comment.user.is_superuser %}
+          管理員:
+        {% else %}
+          {{ comment.user.first_name }}{{ comment.user.last_name }}:
+        {% endif %}
+      </span>
 
       {% if comment.user != user %}
         <span class="h6">{{ comment.content }}</span>
