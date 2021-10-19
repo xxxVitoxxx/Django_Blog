@@ -46,8 +46,10 @@
     <div class="mt-1">
       <span class="commentAuthor">
         {% if comment.user.is_superuser %}
-          管理員:
-        {% elif not comment.user.first_name and not comment.user.last_name %}
+          {{ comment.user.username }}(管理員):
+        {% elif comment.user.fullName %}
+          {{ comment.user.fullName }}:
+        {% elif comment.user.first_name and comment.user.last_name %}
           {{ comment.user.first_name }}{{ comment.user.last_name }}:
         {% else %}
           {{ comment.user.username }}:
