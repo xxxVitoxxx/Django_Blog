@@ -7,7 +7,9 @@ from django.db.models.query_utils import Q
 from django.contrib.auth.decorators import login_required
 
 from .serializers import ArticleSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
@@ -131,6 +133,7 @@ def articleLike(request, articleId):
         article.likes.add(request.user)
     return articleRead(request, articleId)
 
+@login_required
 def commentCreate(request, articleId):
     '''
     Create a comment for an article:
@@ -151,6 +154,7 @@ def commentCreate(request, articleId):
     Comment.objects.create(article=article, user=request.user, content=comment)
     return redirect('article:articleRead', articleId=articleId)
 
+@login_required
 def commentUpdate(request, commentId):
     '''
     Update a comment:
@@ -178,6 +182,7 @@ def commentUpdate(request, commentId):
     
     return redirect('article:articleRead', articleId=article.id)
 
+@login_required
 def commentDelete(request, commentId):
     '''
     1. Get the comment to update and its article; article to 404 if not found
@@ -202,5 +207,25 @@ class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
-    # only superuser can user api
-    permission_classes = (IsAuthenticated,)
+    # all methods only superuser can user
+    #permission_classes = (IsAuthenticated,)
+    parser_classes = (JSONParser,)
+
+    def get_permissions(self):
+        if self.action in ('create',):
+            self.permission_classes = (IsAuthenticated,)
+        return [permission() for permission in self.permission_classes]
+        
+    def list(self, request, **kwargs):
+        users = Article.objects.all()
+        serializer = ArticleSerializer(users, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    #[POST]
+    #@permission_classes((IsAuthenticated,))
+    def create(self, request, **kwargs):
+        name = request.data.get('name')
+        users = Article.objects.create(name=name)
+        serializer = ArticleSerializer(users)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
