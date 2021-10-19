@@ -182,7 +182,7 @@ AUTH_USER_MODEL = 'acc.User' # 客製化的User model要在設定檔內設定，
 
 LOGIN_URL = 'acc:login' # 預設成功登入顯示的網址
 
-LOGIN_REDIRECT_URL = 'article:article'
+LOGIN_REDIRECT_URL = 'blog_app:about'
 
 LOGOUT_URL = 'blog_app:main'
 
@@ -191,4 +191,11 @@ LOGOUT_URL = 'blog_app:main'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# send email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'chaovitoyu83@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.getenv('pwd')
 

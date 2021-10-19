@@ -24,3 +24,11 @@
 .fa-github {
   background: #212529;
 }
+
+#footer {
+  clear:both;
+  background-color:#FFD4D4;
+  height:80px;
+  text-align:center;
+  line-height:80px;
+}

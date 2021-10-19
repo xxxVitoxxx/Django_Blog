@@ -1,3 +1,11 @@
+/*引入google fonts*/
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+a {
+  color:#85929E
+}
+
 .bg-bk {background-color:#B5B5B5;} /*#B5B5B5*/
 .btn {
     font-family: Arial, Helvetica, sans-serif;
@@ -78,12 +86,17 @@
     line-height:600px;
 }
 
-#footer {
-    clear:both;
-    background-color:#FFD4D4;
-    height:80px;
-    text-align:center;
-    line-height:80px;
+#content p{
+  font-family: 'Noto Sans Mono', monospace;
+}
+#content a{
+  font-family: 'Noto Sans Mono', monospace;
+}
+#content h6{
+  font-family: 'Noto Sans Mono', monospace;
+}
+#content h1{
+  font-family: 'Noto Sans Mono', monospace;
 }
 
 .buttonbox{

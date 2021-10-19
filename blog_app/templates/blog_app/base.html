@@ -14,17 +14,6 @@
 
   <link rel="stylesheet" type="text/css" href="{% static 'blog_app/css/main.css' %}">
   {% block css %}{% endblock %}
-
-    <!--引入google fonts-->
-  <style>
-  body {
-    font-family: 'Noto Sans TC', sans-serif;
-  }
-  a {
-    color:#85929E
-  }
-  </style>
-
 </head>
 
 
@@ -56,14 +45,14 @@
         <a class="nav-link" href="{% url 'acc:login' %}">登入</a>
       {% endif %}
       </li>
-      <li class="nav-item dropdown">
+      <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown toggle" href="#" id="navbardrop" data-toggle="dropdown">Flask</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="https://flask.palletsprojects.com/en/2.0.x/">Flask 1</a>
             <a class="dropdown-item" href="https://zh.wikipedia.org/wiki/Flask">Flask 2</a>
             <a class="dropdown-item" href="https://docs.microsoft.com/zh-tw/learn/modules/python-flask-build-ai-web-app/">Flask 3</a>
           </div>
-      </li>
+      </li>-->
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'article:articleSearch' %}">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchTerm"

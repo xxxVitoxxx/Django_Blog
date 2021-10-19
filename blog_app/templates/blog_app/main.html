@@ -14,26 +14,12 @@
       <h6>record your note</h6>
       <p>{{ mail }}</p>
       <button class="btn btn-outline-secondary">
-        <a href="{% url 'acc:login' %}">Sing In</a>
+        <a href="{% url 'acc:login' %}">Sign In</a>
       </button>
       <!--<div class="titlebox"></div>
       <div class="buttonbox"></div>-->
     </div>
-    <div class="navbar-fixed-button">
-      <div class="container">
-        <div class="row">
-          <div class="col-4">
-          <a href="https://github.com/xxxVitoxxx"><img src="{% static 'blog_app/img/github.png' %}" alt="github logo">  :xxxVitoxxx</a>
-          </div>
-          <div class="col-5">
-          <span><img src="{% static 'blog_app/img/gmail.png' %}" alt="gmail logo">  :chaovitoyu@gmail.com</span>
-          </div>
-          <div class="col-3">
-            <a href="https://bird06291994.medium.com"><img src="{% static 'blog_app/img/medium.svg' %}" alt="medium logo">  :bird06291994</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% include 'blog_app/logoicon.html' %}
 
     <!--<div class="container" style = "min-height:300px;">
       <div class="row align-items-end" >

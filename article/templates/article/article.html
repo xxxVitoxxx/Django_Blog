@@ -11,21 +11,22 @@
   <p><a class="btn btn-sm btn-dark" href="{% url 'article:articleCreate' %}">新增文章</a></p>
   {% endif %}
 {% for article, comments in articles.items %}
-{% if user.is_authenticated %}
   <div class="container">
     <div class="row">
       <div class="col-3">
       <h3><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></h3>
       </div>
+      {% if user.is_authenticated %}
       <div class="col">
       <form method="post" action="{% url 'article:articleDelete' article.id %}">
         {% csrf_token %}
         <input class="btn btn-sm btn-dark deleteConfirm" type="submit" value="刪除">
       </form>
       </div>
+      {% endif %}
     </div>
   </div>
-  {% endif %}
+
 
   <p>發表時間{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
   <div class="articleContent">
@@ -43,7 +44,16 @@
   
   {% for comment in comments %}
     <div class="mt-1">
-      <span class="commentAuthor">{{ comment.user.username }}:</span>
+      <span class="commentAuthor">
+        
+        {% if comment.user.fullName %}
+          {{ comment.user.fullName }}
+        {% elif comment.user.is_superuser %}
+          管理員
+        {% else %}
+          {{ comment.user.first_name }}{{ comment.user.last_name }}
+        {% endif %}
+      </span>
       <span class="comment">{{ comment.content }}</span>
       <br>
       <span class="text-secondary"><small>{{ comment.pubDateTime|date:'Y-m-d H:i' }}</small></span>

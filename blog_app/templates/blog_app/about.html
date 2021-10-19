@@ -1,6 +1,13 @@
 {% extends 'blog_app/base.html' %}
-
+{% load static %}
 {% block title %}關於部落客{% endblock title %}
 {% block content %}
-<strong>你好～</strong>這是Vito的Blog
+<div id="fiif">
+  <div id="content">
+    <h1>Django</h1>
+    <h1>side project</h1>
+    <p>用Django建置的blog</p>
+  </div>
+  {% include 'blog_app/logoicon.html' %}
+</div>
 {% endblock content %}
