@@ -64,7 +64,8 @@
     margin-left:120px;
     margin-right:120px;
     height:400px;
-    background-color:red;
+    /*background-color:blanchedalmond;*/
+    background-image: url('{% static 'view1.png' %}');
     text-align:center;
     line-height:400px;
 }
