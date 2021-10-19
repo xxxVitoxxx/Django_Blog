@@ -60,14 +60,22 @@
     float:right;
 }
 
+#fiif {
+    width:600px;
+    margin:0 auto;
+    font-size:13px;
+}
+
 #content {
     margin-left:120px;
     margin-right:120px;
-    height:400px;
+    height:600px;
     /*background-color:blanchedalmond;*/
-    background-image: url('{% static 'view1.png' %}');
+    /*background-image: url('{% static 'view1.png' %}');*/
+    /*background-image: url("{% static 'blog_app/img/view1.png' %}");*/
+    background: url("/static/blog_app/img/view1.png");
     text-align:center;
-    line-height:400px;
+    line-height:600px;
 }
 
 #footer {
@@ -92,6 +100,6 @@
 }
 
 .container img {
-  width: 300px;
-  height: 100px;
-}
+    width: 18px;
+    height: 18px;
+  }

@@ -4,75 +4,33 @@
 {% block title%}部落客{% endblock title %}
 
 {% block css %}
-<style type="text/css">
-#fiif {
-    width:600px;
-    margin:0 auto;
-    font-size:13px;
-}
-#content {
-    margin-left:120px;
-    margin-right:120px;
-    height:600px;
-    text-align:center;
-    line-height:600px;
-}
-#footer {
-    clear:both;
-    background-color:#FFD4D4;
-    height:80px;
-    text-align:center;
-    line-height:80px;
-}
-
-.container img {
-  width: 18px;
-  height: 18px;
-}
-
-body {
-  background-image: url("{% static 'blog_app/img/view1.png' %}");
-}
-/*.titlebox {
-  text-align:center;
-  line-height:20px;
-  margin:0 auto;
-}
-.buttonbox{
-  display:inline-block;
-  width:30px;
-  height:30px;
-  background:#c00;
-}*/
-</style>
-
 <link rel="shortcut.icon" href="#">
 {% endblock %}
+
 {% block content %}
 <div id="fiif">
     <div id="content">
-        <h1>Django's Blog</h1>
-        <h6>record your note</h6>
-        <p>{{ mail }}</p>
-      <button class="btn btn-lg btn-secondary">
+      <h1>Django's Blog</h1>
+      <h6>record your note</h6>
+      <p>{{ mail }}</p>
+      <button class="btn btn-outline-secondary">
         <a href="{% url 'acc:login' %}">Sing In</a>
       </button>
       <!--<div class="titlebox"></div>
       <div class="buttonbox"></div>-->
     </div>
-    <!--<div id="footer">
-        <h6>IG:<a href="#">ihungyu94</a></h6>
-        <h6><a href="#">Gmail:chaovitoyu83@gmail.com</a></h6>
-    </div>-->
     <div class="navbar-fixed-button">
       <div class="container">
         <div class="row">
-          <div class="col-3">
+          <div class="col-4">
           <a href="https://github.com/xxxVitoxxx"><img src="{% static 'blog_app/img/github.png' %}" alt="github logo">  :xxxVitoxxx</a>
           </div>
-          <div class="col-4">
+          <div class="col-5">
           <span><img src="{% static 'blog_app/img/gmail.png' %}" alt="gmail logo">  :chaovitoyu@gmail.com</span>
-        </div>
+          </div>
+          <div class="col-3">
+            <a href="https://bird06291994.medium.com"><img src="{% static 'blog_app/img/medium.svg' %}" alt="medium logo">  :bird06291994</a>
+          </div>
         </div>
       </div>
     </div>
