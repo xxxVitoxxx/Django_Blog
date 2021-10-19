@@ -45,13 +45,12 @@
   {% for comment in comments %}
     <div class="mt-1">
       <span class="commentAuthor">
-        
-        {% if comment.user.fullName %}
-          {{ comment.user.fullName }}:
-        {% elif comment.user.is_superuser %}
+        {% if comment.user.is_superuser %}
           管理員:
-        {% else %}
+        {% elif not comment.user.first_name and not comment.user.last_name %}
           {{ comment.user.first_name }}{{ comment.user.last_name }}:
+        {% else %}
+          {{ comment.user.username }}:
         {% endif %}
       </span>
       <span class="comment">{{ comment.content }}</span>
